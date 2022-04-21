@@ -11,4 +11,4 @@ python main.py
 ```
 
 ### Branch database_queue - using database and rabbitMQ
-### Branch master - commited database connection and no rabbitMQ
+### Branch master - no database connection and no rabbitMQ

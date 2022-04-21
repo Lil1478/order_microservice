@@ -4,6 +4,7 @@ import requests, time
 
 from order_module.order_dao import OrderDAO
 from order_module.order_repository import OrderRepository
+from producer import publish
 from schemas.order_schemas import Order
 
 router = APIRouter(
@@ -29,6 +30,12 @@ async def add_order(request: Request, new_order: Order):
     # product_id = requests.get('http://localhost:4000/products/%s' % body['product_id'])
     # product = req.json()
     result = order_repository.add_order(new_order)
+    product = {
+            'id': "product_id",
+            'name': "pr_name",
+            'price': "pr_price"
+        }
+    publish("create_order", product)
     return result
 
 

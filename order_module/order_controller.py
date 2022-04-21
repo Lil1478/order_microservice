@@ -22,16 +22,18 @@ order_repository = OrderRepository(order_dao)
 
 
 @router.post("/")
-def add_order(new_order: Order):
+async def add_order(request: Request, new_order: Order):
+    body = await request.json()
+
+    # user_id = requests.get('http://localhost:8000/users/%s' % body['user_id'])
+    # product_id = requests.get('http://localhost:4000/products/%s' % body['product_id'])
+    # product = req.json()
     result = order_repository.add_order(new_order)
     return result
 
 
 @router.get("/")
 async def get_orders():
-    req = requests.get('http://localhost:8000/users/1')
-    user = req.json()
-    print("USER GETTED ", user)
     return order_repository.get_orders()
 
 

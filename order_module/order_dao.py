@@ -26,7 +26,7 @@ class OrderDAO:
         order_db = db.query(Order).filter(Order.order_id == order_id).first()
         return order_db
 
-    def delete_user(self, order_id):
+    def delete_order(self, order_id):
         order_db = db.query(Order).filter(Order.order_id == order_id).first()
         if order_db is None:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Resource Not Found")

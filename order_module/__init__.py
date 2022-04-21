@@ -1,5 +1,2 @@
-def init_account_module():
+def init_order_module():
     pass
-    # account_dao = AccountDAO()
-    # account_repository = AccountRepository(account_dao)
-    # account_controllers = AccountControllers(account_repository)

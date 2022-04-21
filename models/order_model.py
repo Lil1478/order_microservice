@@ -15,7 +15,7 @@ class Order(Base):
 
     def to_json(self):
         return {
-            'id': self.person_id,
+            'id': self.order_id,
             'name': self.name,
             'price': self.price
         }

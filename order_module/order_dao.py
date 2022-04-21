@@ -2,10 +2,10 @@ import re
 from sqlalchemy.orm import validates
 from fastapi import status, HTTPException
 
-# from database import SessionLocal
+from database import SessionLocal
 from models.order_model import Order
 
-# db = SessionLocal()
+db = SessionLocal()
 
 
 class OrderDAO:

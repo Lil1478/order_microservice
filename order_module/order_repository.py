@@ -19,10 +19,13 @@ class OrderRepository:
     def get_order_by_id(self, order_id):
         order = {"user_id": 1, "product_id": 1, "name": "order_1", "price": 1}
 
-        user_id = requests.get('http://localhost:8000/users/%s' % order['user_id']).json()
-        product_id = requests.get('http://localhost:4000/products/%s' % order['product_id']).json()
+        user = requests.get('http://localhost:8000/users/%s' % order['user_id']).json()
+        product = requests.get('http://localhost:4000/products/%s' % order['product_id']).json()
 
-        print("user_id: " + str(user_id) + " producr_id" + str(product_id))
+        print("user_id: " + str(user) + " producr_id" + str(product))
+
+        return {"user_first_name": user['first_name'], "user_last_name": user['last_name'],
+                "product_name": product['name'], "product_price": product['price']}
         # return self.account_dao.get_order(order_id)
         return "order getted by id"
 

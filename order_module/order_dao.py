@@ -17,7 +17,6 @@ class OrderDAO:
         return orders
 
     def add_order(self, order: Order):
-        order = Order(order.user_id, order.product_id, order.count, order.price)
         db.add(order)
         db.commit()
         return self.get_order(order.order_id)

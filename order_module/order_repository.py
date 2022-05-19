@@ -8,9 +8,11 @@ class OrderRepository:
         self.account_dao = account_dao
         print("OrderRepository")
 
-    def add_order(self, order: Order):
-        # return self.account_dao.add_order(order)
-        return "order added"
+    def add_order(self, user_id: int, order: Order):
+        order = Order(user_id, order.product_id,
+                      order.count, order.price)
+        return self.account_dao.add_order(order)
+        # return "order added"
 
     def get_orders(self):
         # return self.account_dao.get_all()
@@ -19,8 +21,10 @@ class OrderRepository:
     def get_order_by_id(self, order_id):
         order = {"user_id": 1, "product_id": 1, "name": "order_1", "price": 1}
 
-        user = requests.get('http://localhost:8000/users/%s' % order['user_id']).json()
-        product = requests.get('http://localhost:4000/products/%s' % order['product_id']).json()
+        user = requests.get('http://localhost:8000/users/%s' %
+                            order['user_id']).json()
+        product = requests.get(
+            'http://localhost:4000/products/%s' % order['product_id']).json()
 
         print("user_id: " + str(user) + " producr_id" + str(product))
 

@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from starlette.requests import Request
-import requests, time
+import requests
+import time
 
 from order_module.order_dao import OrderDAO
 from order_module.order_repository import OrderRepository
@@ -24,11 +25,12 @@ order_repository = OrderRepository(order_dao)
 @router.post("/")
 async def add_order(request: Request, new_order: Order):
     body = await request.json()
-
+    user_id = 1
     # user_id = requests.get('http://localhost:8000/users/%s' % body['user_id'])
-    # product_id = requests.get('http://localhost:4000/products/%s' % body['product_id'])
+    # product_id = requests.get(
+    #     'https://is-gateway-v1-bi5g4x67.ew.gateway.dev/products/%s' % body['product_id'])
     # product = req.json()
-    result = order_repository.add_order(new_order)
+    result = order_repository.add_order(user_id, new_order)
     return result
 
 

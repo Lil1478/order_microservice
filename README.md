@@ -7,7 +7,7 @@ python create_db.py
 
 ## Run API
 ```bash
-python main.py
+python3 -m uvicorn app:app --host 0.0.0.0 --port 8080
 ```
 
 ### Branch database_queue - using database and rabbitMQ

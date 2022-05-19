@@ -3,6 +3,6 @@ from pydantic import BaseModel
 
 class Order(BaseModel):
     name: str
-    user_id: int
     product_id: int
+    count: int
     price: float

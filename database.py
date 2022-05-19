@@ -26,8 +26,8 @@ db_host="10.87.16.4"
 db_socket_dir = "/cloudsql/integrated-systems-348617:europe-west1:shop-database"
 instance_connection_name = "integrated-systems-348617:europe-west1:shop-database"
 
-# #local
-# engine = create_engine('postgresql://' + user + ':' + passwd + '@' + host + ':' + port + '/' + db,
+#local
+# engine = create_engine('postgresql://' + "postgres" + ':' + "postgres" + '@' + "35.241.233.185" + ':' + "5432" + '/' + "shop",
 #                        echo=True
 #                        )
 

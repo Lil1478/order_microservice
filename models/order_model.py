@@ -1,3 +1,4 @@
+from ast import Str
 from email.policy import default
 from sqlalchemy import Column, Integer, String
 
@@ -10,13 +11,15 @@ class Order(Base):
     user_id = Column(Integer,  nullable=False)
     product_id = Column(Integer, nullable=False)
     count = Column(Integer, nullable=False, default=0)
-    price = Column(Integer(), nullable=False)
+    price = Column(Integer, nullable=False)
+    status = Column(String(120), nullable=False)
 
-    def __init__(self, user_id, product_id, count,  price):
+    def __init__(self, user_id, product_id, count,  price, status):
         self.user_id = user_id
         self.product_id = product_id
         self.count = count
         self.price = price
+        self.status = status
 
     def to_json(self):
         return {
@@ -25,5 +28,5 @@ class Order(Base):
             'product_id': self.product_id,
             'count': self.count,
             'price': self.price,
-
+            'status':self.status
         }

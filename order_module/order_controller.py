@@ -6,6 +6,7 @@ import time
 from order_module.order_dao import OrderDAO
 from order_module.order_repository import OrderRepository
 from schemas.order_schemas import Order
+from helpers.rabbit import publish_message
 
 router = APIRouter(
     prefix="/orders",
@@ -24,13 +25,27 @@ order_repository = OrderRepository(order_dao)
 
 @router.post("/")
 async def add_order(request: Request, new_order: Order):
-    body = await request.json()
-    user_id = 1
+    data = await request.json()
+    shipment_info = data["shipment_info"]
+    user_id = 3
+    r = requests.get(
+        "https://is-gateway-v1-bi5g4x67.ew.gateway.dev/users/{}".format(user_id),
+    )
+    user_data = r.json()
+
+    shipment_info["email"] = user_data["username"]
+    # print(user_data)
     # user_id = requests.get('http://localhost:8000/users/%s' % body['user_id'])
     # product_id = requests.get(
     #     'https://is-gateway-v1-bi5g4x67.ew.gateway.dev/products/%s' % body['product_id'])
     # product = req.json()
     result = order_repository.add_order(user_id, new_order)
+    publish_message(
+        {
+            "event": "created_order",
+            "payload": {"order": result.to_json(), "shipment_info": shipment_info},
+        }
+    )
     return result
 
 

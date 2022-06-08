@@ -44,10 +44,10 @@ class OrderDAO:
         if db_order is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="Order Not Found")
-        db_order.user_id = new_order.user_id
         db_order.product_id = new_order.product_id
         db_order.count = new_order.count
         db_order.price = new_order.price
+        db_order.status = new_order.status
         return self.get_order(order_id)
 
     def update_order_status(self, order_id, new_status:str):

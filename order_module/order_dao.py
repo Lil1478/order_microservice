@@ -48,6 +48,7 @@ class OrderDAO:
         db_order.count = new_order.count
         db_order.price = new_order.price
         db_order.status = new_order.status
+        db.commit()
         return self.get_order(order_id)
 
     def update_order_status(self, order_id, new_status:str):
@@ -56,4 +57,15 @@ class OrderDAO:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="Order Not Found")
         db_order.status = new_status
+        db.commit()
+        return self.get_order(order_id)
+
+    def update_order_shipment_id(self, order_id, shipment_id):
+        db_order = db.query(Order).filter(Order.order_id == order_id).first()
+        if db_order is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Order Not Found")
+        print("******** ", shipment_id)
+        db_order.shipment_id = shipment_id
+        db.commit()
         return self.get_order(order_id)

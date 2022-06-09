@@ -101,6 +101,16 @@ async def update_order_status(request: Request, order_id: int):
     return order_repository.update_order_status(order_id, new_status)
 
 
+@router.put("/{order_id}/shipment")
+async def update_order_shipment(request: Request, order_id: int):
+    body = await request.json()
+    checked_user = check_user(request)
+    new_shipment_id = int(body['shipment_id'])
+
+    if checked_user == 'AUTH_ERROR':
+        raise credentials_exception
+    return order_repository.update_order_shipment_id(order_id, new_shipment_id)
+
 @router.delete("/{order_id}")
 async def delete_order(request: Request, order_id: int):
     checked_user = check_user(request)

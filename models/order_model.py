@@ -13,13 +13,15 @@ class Order(Base):
     count = Column(Integer, nullable=False, default=0)
     price = Column(Integer, nullable=False)
     status = Column(String(120), nullable=False)
+    shipment_id = Column(Integer, nullable=True)
 
-    def __init__(self, user_id, product_id, count,  price, status):
+    def __init__(self, user_id, product_id, count,  price, status, shipment_id=None):
         self.user_id = user_id
         self.product_id = product_id
         self.count = count
         self.price = price
         self.status = status
+        self.shipment_id = shipment_id
 
     def to_json(self):
         return {
@@ -28,5 +30,6 @@ class Order(Base):
             'product_id': self.product_id,
             'count': self.count,
             'price': self.price,
-            'status':self.status
+            'status': self.status,
+            "shipment_id": self.shipment_id
         }

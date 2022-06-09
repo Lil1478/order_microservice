@@ -19,7 +19,6 @@ config.read('configuration.ini')
 # passwd = config['postgresql']['passwd']
 # db = config['postgresql']['db']
 
-#local
 # engine = create_engine('postgresql://' + "postgres" + ':' + "postgres" + '@' + "35.241.233.185" + ':' + "5432" + '/' + "shop",
 #                        echo=True
 #                        )

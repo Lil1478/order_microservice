@@ -84,6 +84,9 @@ class OrderRepository:
     def update_order_status(self, order_id, new_status):
         return self.order_dao.update_order_status(order_id, new_status)
 
+    def update_order_shipment_id(self, order_id, shipment_id):
+        return self.order_dao.update_order_shipment_id(order_id, shipment_id)
+
     def delete_order(self, order_id):
         return self.order_dao.delete_order(order_id)
 

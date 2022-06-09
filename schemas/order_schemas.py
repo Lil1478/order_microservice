@@ -7,6 +7,7 @@ class Order(BaseModel):
     product_id: int
     count: int
     price: float
+    status: str
 
 
 class OrderResponse(BaseModel):

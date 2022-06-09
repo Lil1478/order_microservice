@@ -90,14 +90,14 @@ async def get_order(request: Request, order_id: int,  detail: bool = False):
     except Exception as e:
         return HTTPException(
             status_code=500, detail="Error during processing")
-        if checked_user == 'AUTH_ERROR':
-            raise credentials_exception
-        token = request.headers['Authorization']
-        result = order_repository.get_order_by_id(token, detail, order_id)
-        if result == "NO_PRODUCT":
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND, detail="Product with such id is not exist")
-        return result
+    if checked_user == 'AUTH_ERROR':
+        raise credentials_exception
+    token = request.headers['Authorization']
+    result = order_repository.get_order_by_id(token, detail, order_id)
+    if result == "NO_PRODUCT":
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Product with such id is not exist")
+    return result
 
 
 @router.post("/user")

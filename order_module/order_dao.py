@@ -65,7 +65,6 @@ class OrderDAO:
         if db_order is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="Order Not Found")
-        print("******** ", shipment_id)
         db_order.shipment_id = shipment_id
         db.commit()
         return self.get_order(order_id)
